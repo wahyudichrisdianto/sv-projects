@@ -2,15 +2,16 @@
     import type { BlogPost } from "$lib/types";
 
     interface Props {
+        id?: string;
         posts: BlogPost[];
     }
-    let { posts }: Props = $props();
+    let { id, posts }: Props = $props();
 
     const displayPosts = $derived(posts.slice(0, 4));
     const hasMore = $derived((posts?.length ?? 0) > 4);
 </script>
 
-<section class="archive-preview" aria-label="Recent Articles">
+<section {id} class="archive-preview" aria-label="Recent Articles">
     <div class="archive-inner grid-container">
         <span class="label">Archive</span>
         <h2 class="section-title">Recent Writing</h2>

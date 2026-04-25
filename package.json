@@ -7,14 +7,18 @@
 		"dev": "vite dev",
 		"build": "wrangler types --check && vite build",
 		"preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
+		"deploy": "bun run build && wrangler deploy",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "wrangler types --check && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"gen": "wrangler types",
-		"db:push": "drizzle-kit push",
 		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio"
+		"db:migrate:local": "for f in drizzle/000*.sql; do echo \"Applying $f...\"; wrangler d1 execute sv_project --local --file=\"$f\"; done",
+		"db:migrate:remote": "for f in drizzle/000*.sql; do echo \"Applying $f...\"; wrangler d1 execute sv_project --remote --file=\"$f\"; done",
+		"db:seed:local": "wrangler d1 execute sv_project --local --file=drizzle/seed_projects.sql && wrangler d1 execute sv_project --local --file=drizzle/seed_experiences.sql",
+		"db:seed:remote": "wrangler d1 execute sv_project --remote --file=drizzle/seed_projects.sql && wrangler d1 execute sv_project --remote --file=drizzle/seed_experiences.sql",
+		"db:studio": "drizzle-kit studio",
+		"clean": "rm -rf .svelte-kit"
 	},
 	"devDependencies": {
 		"@inlang/paraglide-js": "^2.15.2",

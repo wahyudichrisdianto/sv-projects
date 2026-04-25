@@ -40,10 +40,9 @@ export const sections = {
     { id: "hero", label: "Hero" },
     { id: "profile", label: "Profile", wrap: "Pro" },
     { id: "experience", label: "Experience", wrap: "Exp" },
-    { id: "writing", label: "Writing" },
-    { id: "work", label: "Work" },
+    { id: "work", label: "Showcases", wrap: "Case" },
     { id: "testimonials", label: "Testimonials", wrap: "Testi" },
-    { id: "contact", label: "Contact", wrap: "Ctc" },
+    { id: "contact", label: "Contact", wrap: "Chat" },
   ] as SectionItem[],
 
   archive: [

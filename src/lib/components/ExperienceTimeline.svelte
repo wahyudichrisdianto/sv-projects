@@ -2,22 +2,21 @@
     import type { Experience } from "$lib/types";
 
     interface Props {
+        id?: string;
         experiences: Experience[];
     }
-    let { experiences }: Props = $props();
-    let visibleCount = $state(3);
+    let { id, experiences }: Props = $props();
 
-    $effect(() => {
-        if (visibleCount > experiences.length) {
-            visibleCount = experiences.length;
-        }
-    });
+    let expanded = $state(false);
+    const DEFAULT_COUNT = 3;
 
-    const visible = $derived(experiences.slice(0, visibleCount));
-    const hasMore = $derived(visibleCount < experiences.length);
+    const visible = $derived(
+        expanded ? experiences : experiences.slice(0, DEFAULT_COUNT)
+    );
+    const canToggle = $derived(experiences.length > DEFAULT_COUNT);
 </script>
 
-<section class="experience" aria-label="Experience">
+<section {id} class="experience" aria-label="Experience">
     <div class="experience-inner grid-container">
         <span class="label">Experience</span>
         <h2 class="section-title">Career Timeline</h2>
@@ -50,12 +49,14 @@
             {/each}
         </div>
 
-        {#if hasMore}
+        {#if canToggle}
             <button
-                class="show-more"
-                onclick={() => (visibleCount = experiences.length)}
+                class="toggle-btn"
+                onclick={() => (expanded = !expanded)}
             >
-                Show all {experiences.length} experiences
+                {expanded
+                    ? "Show less"
+                    : `Show all ${experiences.length} experiences`}
             </button>
         {/if}
     </div>
@@ -172,7 +173,7 @@
         border-radius: var(--radius-sm);
     }
 
-    .show-more {
+    .toggle-btn {
         margin-top: var(--space-element);
         padding: 0.75rem 1.5rem;
         font-size: var(--text-sm);
@@ -185,7 +186,7 @@
         transition: all var(--duration-fast) var(--ease-default);
     }
 
-    .show-more:hover {
+    .toggle-btn:hover {
         border-color: var(--color-text);
         background: var(--color-text);
         color: var(--color-surface);

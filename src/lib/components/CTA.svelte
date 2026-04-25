@@ -1,5 +1,6 @@
 <script lang="ts">
     interface Props {
+        id?: string;
         label?: string;
         headline?: string;
         description?: string;
@@ -7,6 +8,7 @@
     }
 
     let {
+        id,
         label = "Get in Touch",
         headline = "Let's work together",
         description = "Have a project in mind or want to collaborate? I'd love to hear from you.",
@@ -25,7 +27,7 @@
     }: Props = $props();
 </script>
 
-<section class="cta" aria-label="Call to action">
+<section {id} class="cta" aria-label="Call to action">
     <div class="cta-inner grid-container">
         <span class="label">{label}</span>
         <h2 class="cta-headline">{headline}</h2>

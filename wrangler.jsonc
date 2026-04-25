@@ -3,7 +3,8 @@
 	"name": "sv-project",
 	"compatibility_date": "2026-04-23",
 	"compatibility_flags": [
-		"nodejs_als"
+		"nodejs_als",
+		"nodejs_compat"
 	],
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"assets": {
@@ -17,6 +18,12 @@
 			"binding": "DB",
 			"database_name": "sv_project",
 			"database_id": "bf4a44b4-e3ca-4b3d-951c-c21411413457"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "IMAGES",
+			"bucket_name": "sv-project"
 		}
 	]
 }

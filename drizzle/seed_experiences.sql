@@ -1,0 +1,5 @@
+INSERT INTO experience (id, role, company, start_date, end_date, description, technologies) VALUES
+('exp-1', 'Senior Frontend Engineer', 'TechCorp Inc.', '2023-01', 'Present', 'Leading the frontend architecture migration to Svelte 5. Improved performance metrics by 40% through component optimization and code splitting strategies.', '["Svelte","TypeScript","TailwindCSS"]'),
+('exp-2', 'Full Stack Developer', 'Digital Studio', '2021-06', '2022-12', 'Built and maintained client-facing web applications with modern JavaScript frameworks. Collaborated with design teams to implement pixel-perfect interfaces.', '["React","Node.js","PostgreSQL"]'),
+('exp-3', 'Junior Developer', 'StartupXYZ', '2020-03', '2021-05', 'Developed responsive web applications and contributed to the company''s design system. Implemented automated testing pipelines.', '["Vue.js","Python","Docker"]'),
+('exp-4', 'Web Development Intern', 'Agency Co.', '2019-09', '2020-02', 'Assisted in building client websites and learned production-level development workflows.', '["HTML","CSS","JavaScript"]');

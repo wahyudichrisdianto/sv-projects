@@ -8,6 +8,7 @@
     let { sections }: Props = $props();
 
     let activeId = $state<string>("");
+    let pendingId = $state<string>("");
     let dockEl = $state<HTMLDivElement | null>(null);
     let dockWidth = $state(0);
     let useWrap = $state(false);
@@ -44,19 +45,25 @@
         const maxChars = Math.floor(widthPerItem / CHAR_WIDTH);
 
         // If any label exceeds maxChars AND has a wrap fallback → enable wrapping
-        const needsWrap = sections.some(s => s.label.length > maxChars && s.wrap);
+        const needsWrap = sections.some(
+            (s) => s.label.length > maxChars && s.wrap,
+        );
         useWrap = needsWrap;
 
         // If more than 6 items, enable flex-wrap
-        shouldWrap = count > 6;
+        shouldWrap = count > 7;
     });
 
     function scrollTo(id: string) {
-        activeId = id;
+        pendingId = id;
         const el = document.getElementById(id);
         if (el) {
             el.scrollIntoView({ behavior: "smooth", block: "start" });
         }
+        // Fallback: if IntersectionObserver never fires (e.g. same section), clear after a delay
+        setTimeout(() => {
+            if (pendingId === id) pendingId = "";
+        }, 1200);
     }
 
     onMount(() => {
@@ -86,6 +93,7 @@
 
                 if (visible.length > 0) {
                     activeId = visible[0].target.id;
+                    if (pendingId === activeId) pendingId = "";
                 }
             },
             {
@@ -113,6 +121,7 @@
             <button
                 class="nav-item"
                 class:active={activeId === item.id}
+                class:pending={pendingId === item.id}
                 onclick={() => scrollTo(item.id)}
             >
                 <span class="nav-label">
@@ -174,9 +183,7 @@
         background: none;
         border: none;
         cursor: pointer;
-        transition:
-            color var(--duration-fast) var(--ease-default),
-            background var(--duration-fast) var(--ease-default);
+        transition: color var(--duration-fast) var(--ease-default);
         position: relative;
         min-width: 0;
     }
@@ -193,6 +200,14 @@
     .nav-item.active {
         color: var(--color-text);
         background: var(--color-bg);
+    }
+
+    .nav-item.pending {
+        color: var(--color-text);
+    }
+
+    .nav-item.pending .nav-indicator {
+        background: var(--color-text);
     }
 
     .nav-indicator {
@@ -275,7 +290,12 @@
         }
 
         .nav-item.active {
+            color: var(--color-text);
             background: var(--color-bg);
+        }
+
+        .nav-item.pending {
+            color: var(--color-text);
         }
 
         .nav-indicator {

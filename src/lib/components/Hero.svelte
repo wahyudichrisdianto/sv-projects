@@ -1,23 +1,47 @@
 <script lang="ts">
+    import type { Snippet } from "svelte";
+
     interface Props {
+        id?: string;
         label?: string;
-        headline?: string;
+        title?: string;
+        title2?: string;
         subtext?: string;
+        children?: Snippet;
     }
+
     let {
+        id,
         label = "Welcome",
-        headline = "Creative Developer & Designer",
+        title = "Creative Developer",
+        title2 = "",
         subtext = "Building thoughtful digital experiences with clean code and intentional design.",
+        children,
     }: Props = $props();
 </script>
 
-<section class="hero" aria-label="Hero">
+<section {id} class="hero" aria-label="Hero">
     <div class="hero-inner grid-container">
-        <span class="label hero-label">{label}</span>
-        <div class=""></div>
-        <div class=""></div>
-        <h1 class="hero-headline">{headline}</h1>
-        <p class="hero-subtext">{subtext}</p>
+        {#if label}
+            <span class="label hero-label">{label}</span>
+        {/if}
+
+        <h1 class="hero-headline">
+            {#if children}
+                {@render children()}
+            {:else}
+                {#if title}
+                    <span class="hero-title">{title}</span>
+                {/if}
+                {#if title2}
+                    <span class="hero-title2">{title2}</span>
+                {/if}
+            {/if}
+        </h1>
+
+        {#if subtext}
+            <p class="hero-subtext">{subtext}</p>
+        {/if}
     </div>
 </section>
 
@@ -37,18 +61,35 @@
     }
 
     .hero-headline {
-        font-size: var(--text-4xl);
+        font-size: var(--text-5xl);
         font-weight: 700;
         line-height: 1.1;
         letter-spacing: -0.03em;
         margin-bottom: var(--space-element);
-        max-width: 14ch;
+        max-width: 16ch;
+    }
+
+    .hero-title {
+        display: block;
+    }
+
+    .hero-title2 {
+        display: block;
+        font-size: 26px;
+        background: linear-gradient(
+            135deg,
+            oklch(55% 0.18 280),
+            oklch(65% 0.2 200)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     @media (min-width: 768px) {
         .hero-headline {
             font-size: var(--text-5xl);
-            max-width: 16ch;
+            max-width: 18ch;
         }
     }
 

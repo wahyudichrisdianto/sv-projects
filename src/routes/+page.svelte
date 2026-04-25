@@ -8,45 +8,34 @@
     import Testimonials from "$lib/components/Testimonials.svelte";
     import CTA from "$lib/components/CTA.svelte";
     import { sections } from "$lib/configs/navs";
-    import { experiences, blogPosts, projects } from "$lib/data/content";
+    import { blogPosts } from "$lib/data/content";
 
     let { data } = $props();
 </script>
 
 <SectionNav sections={sections.home} />
 
-<section id="hero">
-    <Hero
-        label=""
-        headline="Fullstack Developer & Designer + AI Power"
-        subtext="Vibing with AI to Building thoughtful digital experiences with clean code and intentional design."
-    />
-</section>
+<Hero
+    id="hero"
+    label=""
+    title="Creative Developer"
+    title2="* Tukang Pecut AI"
+    subtext="Vibing with AI to Building thoughtful digital experiences with clean code and intentional design."
+/>
 
-<section id="profile">
-    <Profile
-        name="Wahyudi Chrisdianto"
-        title="Full Stack Developer"
-        bio="Versatile Full-Stack Software Engineer and UI/UX Designer with a product-first approach. 4+ years of experience in software house and startup environments, specializing in building fast, scalable, and maintainable web, mobile, and backend systems. Proven ability to translate complex business needs into high-performance applications, optimize development workflows, and mentor teams for effective product delivery."
-    />
-</section>
+<Profile
+    id="profile"
+    name="Wahyudi Chrisdianto"
+    title="Full Stack Developer"
+    bio="Saya adalah Full-Stack Software Engineer dengan pendekatan product-first, berfokus pada membangun web, mobile, dan backend system yang cepat, scalable, dan mudah dipelihara. Saya terbiasa menerjemahkan kebutuhan bisnis yang kompleks menjadi solusi teknis yang solid, efisien, dan berdampak.
+ /n Saya juga berpengalaman dalam mengoptimalkan workflow pengembangan, menjaga kualitas implementasi, serta membantu tim bekerja lebih efektif agar produk dapat dirilis dengan lebih baik."
+    projectCount={data.projectCount}
+/>
 
-<section id="experience">
-    <ExperienceTimeline {experiences} />
-</section>
+<ExperienceTimeline id="experience" experiences={data.experiences} />
 
-<section id="writing">
-    <ArchivePreview posts={blogPosts} />
-</section>
+<ProjectsPreview id="work" projects={data.projects} />
 
-<section id="work">
-    <ProjectsPreview {projects} />
-</section>
+<Testimonials id="testimonials" testimonials={data.testimonials} />
 
-<section id="testimonials">
-    <Testimonials testimonials={data.testimonials} />
-</section>
-
-<section id="contact">
-    <CTA />
-</section>
+<CTA id="contact" />
