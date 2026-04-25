@@ -8,6 +8,9 @@ node_modules
 /.svelte-kit
 /build
 
+# Generated types
+worker-configuration.d.ts
+
 # OS
 .DS_Store
 Thumbs.db
@@ -21,6 +24,32 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
 # Paraglide
 src/lib/paraglide
 project.inlang/cache/
+
+# IDE
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local D1 / SQLite
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Drizzle
+.drizzle
+
+# Coverage
+coverage
