@@ -12,9 +12,18 @@
             tags: string[];
         }[];
         speed?: number;
+        flat?: boolean;
+        cardWidth?: number;
+        cardHeight?: number | null;
     }
 
-    let { items, speed = 0.5 }: Props = $props();
+    let {
+        items,
+        speed = 100,
+        flat = true,
+        cardWidth = 360,
+        cardHeight = null,
+    }: Props = $props();
 
     let trackEl = $state<HTMLDivElement | null>(null);
     let rowEl = $state<HTMLDivElement | null>(null);
@@ -28,7 +37,7 @@
     let dragStartX = $state(0);
     let dragStartScroll = $state(0);
 
-    const GAP = 16;
+    const GAP = flat ? 0 : 16;
 
     onMount(() => {
         if (!trackEl || !rowEl) return;
@@ -135,10 +144,16 @@
     const duplicated = [...shuffled, ...shuffled];
 </script>
 
-<div class="marquee-row" bind:this={rowEl}>
+<div class="marquee-row" class:flat bind:this={rowEl}>
     <div class="marquee-track" class:ready bind:this={trackEl}>
         {#each duplicated as project, i (project.id + "-dup" + i)}
-            <article class="project-card" class:dragging={isDragging}>
+            <article
+                class="project-card"
+                class:dragging={isDragging}
+                style:width="{cardWidth}px"
+                style:height={cardHeight ? `${cardHeight}px` : null}
+                style:aspect-ratio={cardHeight ? "auto" : null}
+            >
                 {#if project.image}
                     <div class="project-image">
                         <img
@@ -199,6 +214,10 @@
         touch-action: pan-y; /* Allow vertical scroll, we handle horizontal */
         user-select: none;
         rotate: -1.5deg;
+    }
+
+    .marquee-row.flat {
+        rotate: 0deg;
     }
 
     .marquee-row:active {
@@ -377,12 +396,8 @@
 
     /* ── Mobile ── */
     @media (max-width: 767px) {
-        .marquee-row {
+        .marquee-row:not(.flat) {
             rotate: -2.5deg;
-        }
-        .project-card {
-            width: 320px;
-            height: 240px;
         }
     }
 
@@ -390,5 +405,85 @@
         .marquee-track {
             animation: none !important;
         }
+    }
+
+    /* ── Flat mode — hero strip (Laravel-style cells) ── */
+    .marquee-row.flat .marquee-track {
+        gap: 0;
+    }
+
+    .marquee-row.flat .project-card {
+        border: none;
+        border-right: 1px solid var(--color-border);
+        background: transparent;
+        transition: border-color var(--duration-normal) var(--ease-default);
+    }
+
+    .marquee-row.flat .project-card:hover {
+        border-color: var(--color-border-hover);
+    }
+
+    .marquee-row.flat .project-placeholder {
+        background: transparent;
+    }
+
+    .marquee-row.flat .placeholder-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--color-text-muted);
+        opacity: 0.5;
+        transition:
+            color var(--duration-normal) var(--ease-default),
+            opacity var(--duration-normal) var(--ease-default);
+    }
+
+    .marquee-row.flat .project-card:hover .placeholder-text {
+        color: var(--color-accent);
+        opacity: 1;
+    }
+
+    .marquee-row.flat .project-overlay {
+        background: var(--color-accent-muted);
+        border-top: 2px solid var(--color-accent-border);
+    }
+
+    .marquee-row.flat .project-content {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transform: none;
+        padding: 0.75rem 1rem;
+    }
+
+    .marquee-row.flat .project-card:hover .project-content {
+        transform: none;
+    }
+
+    .marquee-row.flat .project-desc,
+    .marquee-row.flat .project-tags,
+    .marquee-row.flat .project-link {
+        display: none;
+    }
+
+    .marquee-row.flat .project-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        margin-bottom: 0;
+    }
+
+    .marquee-row.flat .project-title {
+        font-size: var(--text-xs);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+    }
+
+    .marquee-row.flat .project-year {
+        font-size: 0.625rem;
+        color: var(--color-text-muted);
+        letter-spacing: 0.04em;
     }
 </style>

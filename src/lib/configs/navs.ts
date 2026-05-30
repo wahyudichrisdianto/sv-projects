@@ -18,6 +18,9 @@ export const mainNav: NavLink[] = [
   { label: "Colabo", href: "/colabo" },
 ];
 
+/* ── Contact config — edit WHATSAPP_NUMBER to your number (intl format, no +) ── */
+export const WHATSAPP_NUMBER = '6281234567890';
+
 /* ── Social links (Footer) ── */
 export const socialMedia: NavLink[] = [
   {
@@ -40,8 +43,7 @@ export const sections = {
     { id: "hero", label: "Hero" },
     { id: "profile", label: "Profile", wrap: "Pro" },
     { id: "experience", label: "Experience", wrap: "Exp" },
-    { id: "work", label: "Showcases", wrap: "Case" },
-    { id: "testimonials", label: "Testimonials", wrap: "Testi" },
+{ id: "testimonials", label: "Testimonials", wrap: "Testi" },
     { id: "contact", label: "Contact", wrap: "Chat" },
   ] as SectionItem[],
 

@@ -11,6 +11,11 @@
     --color-border: oklch(92% 0.004 260);
     --color-border-hover: oklch(72% 0.008 260);
 
+    /* Accent — violet-indigo */
+    --color-accent: oklch(52% 0.2 280);
+    --color-accent-muted: oklch(52% 0.2 280 / 0.12);
+    --color-accent-border: oklch(52% 0.2 280 / 0.25);
+
     /* Shadows — oklch with alpha */
     --shadow-sm: oklch(0% 0 0 / 0.04);
     --shadow-md: oklch(0% 0 0 / 0.06);
@@ -70,6 +75,9 @@
     --color-selection-fg: oklch(99% 0.002 260);
     --color-scrollbar: oklch(92% 0.004 260);
     --color-scrollbar-hover: oklch(72% 0.008 260);
+    --color-accent: oklch(52% 0.2 280);
+    --color-accent-muted: oklch(52% 0.2 280 / 0.12);
+    --color-accent-border: oklch(52% 0.2 280 / 0.25);
 }
 
 /* ── Dark mode (soft, not pure black/white) ── */
@@ -92,6 +100,9 @@
         --color-selection-fg: oklch(18% 0.008 260);
         --color-scrollbar: oklch(30% 0.008 260);
         --color-scrollbar-hover: oklch(45% 0.01 260);
+        --color-accent: oklch(68% 0.18 280);
+        --color-accent-muted: oklch(68% 0.18 280 / 0.12);
+        --color-accent-border: oklch(68% 0.18 280 / 0.25);
     }
 }
 
@@ -114,6 +125,9 @@
     --color-selection-fg: oklch(99% 0.002 260);
     --color-scrollbar: oklch(92% 0.004 260);
     --color-scrollbar-hover: oklch(72% 0.008 260);
+    --color-accent: oklch(52% 0.2 280);
+    --color-accent-muted: oklch(52% 0.2 280 / 0.12);
+    --color-accent-border: oklch(52% 0.2 280 / 0.25);
 }
 
 /* ── Manual override: force dark ── */
@@ -135,6 +149,9 @@
     --color-selection-fg: oklch(18% 0.008 260);
     --color-scrollbar: oklch(30% 0.008 260);
     --color-scrollbar-hover: oklch(45% 0.01 260);
+    --color-accent: oklch(68% 0.18 280);
+    --color-accent-muted: oklch(68% 0.18 280 / 0.12);
+    --color-accent-border: oklch(68% 0.18 280 / 0.25);
 }
 
 /* Base reset */
@@ -172,7 +189,7 @@ a {
 
 /* Focus visible */
 :focus-visible {
-    outline: 2px solid var(--color-text);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
 
@@ -216,8 +233,9 @@ a {
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-text-muted);
+    color: var(--color-accent);
 }
+
 
 /* Hover card effect */
 .card-hover {

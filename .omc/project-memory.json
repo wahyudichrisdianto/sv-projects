@@ -1,0 +1,260 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1778935138525,
+  "projectRoot": "/Users/yu/Spaces/p/sv_/sv_project",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "@sveltejs/kit",
+        "version": "2.57.0",
+        "category": "fullstack"
+      },
+      {
+        "name": "svelte",
+        "version": "5.55.2",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "8.0.7",
+        "category": "build"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "/opt/homebrew/bin/lean-ctx -c 'bun run build 2>&1' | tail -6",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite dev",
+      "build": "wrangler types --check && vite build",
+      "preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
+      "deploy": "bun run build && wrangler deploy",
+      "prepare": "svelte-kit sync || echo ''",
+      "check": "wrangler types --check && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+      "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+      "gen": "wrangler types",
+      "db:generate": "drizzle-kit generate",
+      "db:migrate:local": "for f in drizzle/000*.sql; do echo \"Applying $f...\"; wrangler d1 execute sv_project --local --file=\"$f\"; done",
+      "db:migrate:remote": "for f in drizzle/000*.sql; do echo \"Applying $f...\"; wrangler d1 execute sv_project --remote --file=\"$f\"; done",
+      "db:seed:local": "wrangler d1 execute sv_project --local --file=drizzle/seed_projects.sql && wrangler d1 execute sv_project --local --file=drizzle/seed_experiences.sql",
+      "db:seed:remote": "wrangler d1 execute sv_project --remote --file=drizzle/seed_projects.sql && wrangler d1 execute sv_project --remote --file=drizzle/seed_experiences.sql",
+      "db:studio": "drizzle-kit studio",
+      "clean": "rm -rf .svelte-kit"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": "ES modules",
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "src",
+      "static"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "drizzle": {
+      "path": "drizzle",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1778935138462,
+      "keyFiles": [
+        "0000_bent_speedball.sql",
+        "0001_lumpy_lady_mastermind.sql",
+        "0002_flat_rocket_racer.sql",
+        "0003_polite_stardust.sql",
+        "seed_experiences.sql"
+      ]
+    },
+    "messages": {
+      "path": "messages",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1778935138468,
+      "keyFiles": [
+        "en.json",
+        "id.json"
+      ]
+    },
+    "notes": {
+      "path": "notes",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1778935138468,
+      "keyFiles": []
+    },
+    "outputs": {
+      "path": "outputs",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1778935138509,
+      "keyFiles": [
+        "seo-wahyudi-chrisdianto.md",
+        "seo-wahyudi-chrisdianto.provenance.md",
+        "swiss-reactive-portfolio-audit.md"
+      ]
+    },
+    "project.inlang": {
+      "path": "project.inlang",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1778935138509,
+      "keyFiles": [
+        "README.md",
+        "settings.json"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 4,
+      "lastAccessed": 1778935138510,
+      "keyFiles": [
+        "app.d.ts",
+        "app.html",
+        "hooks.server.ts",
+        "hooks.ts"
+      ]
+    },
+    "static": {
+      "path": "static",
+      "purpose": "Static files",
+      "fileCount": 2,
+      "lastAccessed": 1778935138510,
+      "keyFiles": [
+        "robots.txt",
+        "sitemap.xml"
+      ]
+    },
+    "test-results": {
+      "path": "test-results",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1778935138510,
+      "keyFiles": []
+    },
+    "src/lib": {
+      "path": "src/lib",
+      "purpose": "Library code",
+      "fileCount": 1,
+      "lastAccessed": 1778935138511,
+      "keyFiles": [
+        "index.ts"
+      ]
+    },
+    "src/routes": {
+      "path": "src/routes",
+      "purpose": "Route handlers",
+      "fileCount": 5,
+      "lastAccessed": 1778935138511,
+      "keyFiles": [
+        "+layout.svelte",
+        "+page.server.ts",
+        "+page.svelte"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/lib/components/ProjectsMarquee.svelte",
+      "accessCount": 13,
+      "lastAccessed": 1778938466862,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/styles/global.css",
+      "accessCount": 12,
+      "lastAccessed": 1778937662261,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/Hero.svelte",
+      "accessCount": 11,
+      "lastAccessed": 1778938446148,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/Footer.svelte",
+      "accessCount": 7,
+      "lastAccessed": 1778937599709,
+      "type": "file"
+    },
+    {
+      "path": "src/routes/+page.svelte",
+      "accessCount": 6,
+      "lastAccessed": 1778937275826,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/configs/navs.ts",
+      "accessCount": 3,
+      "lastAccessed": 1778936936982,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/utils/social.ts",
+      "accessCount": 3,
+      "lastAccessed": 1778936971672,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/ProjectsPreview.svelte",
+      "accessCount": 1,
+      "lastAccessed": 1778935317015,
+      "type": "file"
+    },
+    {
+      "path": "src/routes/+page.server.ts",
+      "accessCount": 1,
+      "lastAccessed": 1778935323570,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/CTA.svelte",
+      "accessCount": 1,
+      "lastAccessed": 1778937275397,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/Header.svelte",
+      "accessCount": 1,
+      "lastAccessed": 1778937275615,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/Profile.svelte",
+      "accessCount": 1,
+      "lastAccessed": 1778937275783,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

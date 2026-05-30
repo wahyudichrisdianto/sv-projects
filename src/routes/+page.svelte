@@ -4,7 +4,6 @@
     import Profile from "$lib/components/Profile.svelte";
     import ExperienceTimeline from "$lib/components/ExperienceTimeline.svelte";
     import ArchivePreview from "$lib/components/ArchivePreview.svelte";
-    import ProjectsPreview from "$lib/components/ProjectsPreview.svelte";
     import Testimonials from "$lib/components/Testimonials.svelte";
     import CTA from "$lib/components/CTA.svelte";
     import { sections } from "$lib/configs/navs";
@@ -21,6 +20,7 @@
     title="Creative Developer"
     title2="* Tukang Pecut AI"
     subtext="Vibing with AI to Building thoughtful digital experiences with clean code and intentional design."
+    projects={data.projects}
 />
 
 <Profile
@@ -33,8 +33,6 @@
 />
 
 <ExperienceTimeline id="experience" experiences={data.experiences} />
-
-<ProjectsPreview id="work" projects={data.projects} />
 
 <Testimonials id="testimonials" testimonials={data.testimonials} />
 
