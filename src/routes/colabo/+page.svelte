@@ -64,7 +64,7 @@
 	}
 
 	.page-inner {
-		max-width: 1200px;
+		max-width: 860px;
 		margin: 0 auto;
 		padding: 0 1.5rem;
 	}

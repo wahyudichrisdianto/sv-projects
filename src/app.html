@@ -10,6 +10,19 @@
 		/>
 
 		<meta name="text-scale" content="scale" />
+
+		<!-- Preloader guard: hide the intro overlay pre-paint for returning
+		     visitors (once per session) and reduced-motion users. -->
+		<script>
+			(function () {
+				try {
+					var seen = sessionStorage.getItem('kaiyu:preloaded');
+					var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+					if (seen || reduce)
+						document.documentElement.setAttribute('data-preloaded', '');
+				} catch (e) {}
+			})();
+		</script>
 		%sveltekit.head%
 	</head>
 

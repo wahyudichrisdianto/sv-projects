@@ -5,6 +5,7 @@
 	import { locales, localizeHref } from '$lib/paraglide/runtime';
 	import '$lib/styles/global.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import Preloader from '$lib/components/Preloader.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
@@ -96,6 +97,7 @@
 	</script>
 </svelte:head>
 
+<Preloader />
 <Header />
 <main>
 	{@render children()}

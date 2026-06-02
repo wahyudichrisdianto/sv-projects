@@ -40,10 +40,9 @@ export const socialMedia: NavLink[] = [
 /* ── Section navigation per page ── */
 export const sections = {
   home: [
-    { id: "hero", label: "Hero" },
-    { id: "profile", label: "Profile", wrap: "Pro" },
+    { id: "intro", label: "Intro" },
     { id: "experience", label: "Experience", wrap: "Exp" },
-{ id: "testimonials", label: "Testimonials", wrap: "Testi" },
+    { id: "testimonials", label: "Testimonials", wrap: "Testi" },
     { id: "contact", label: "Contact", wrap: "Chat" },
   ] as SectionItem[],
 

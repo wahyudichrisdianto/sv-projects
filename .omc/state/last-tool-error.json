@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"rtk grep -r \\\"Preloader\\\" /Users/yu/Spaces/p/sv_/sv_project/src/ 2>/dev/null\"}",
+  "error": "Exit code 1",
+  "timestamp": "2026-06-02T04:38:28.521Z",
+  "retry_count": 1
+}

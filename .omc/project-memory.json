@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1778935138525,
+  "lastScanned": 1780372364571,
   "projectRoot": "/Users/yu/Spaces/p/sv_/sv_project",
   "techStack": {
     "languages": [
@@ -42,13 +42,13 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "/opt/homebrew/bin/lean-ctx -c 'bun run build 2>&1' | tail -6",
+    "buildCommand": "cd /Users/yu/Spaces/p/sv_/sv_project\nlsof -ti tcp:4173 2>/dev/null | xargs -r kill -9 2>/dev/null; pkill -f \"wrangler dev\" 2>/dev/null; sleep 1\nbun run build 2>&1 | tail -2\n(bun run preview >/tmp/sv_prev.log 2>&1 &) ; sleep 13 ; tail -1 /tmp/sv_prev.log\ncurl -s \"http://localhost:4173/\" -o /dev/null -w \"/ HTTP %{http_code}\\n\"\necho \"DURATION in bundle : $(grep -oE '2200' .svelte-kit/cloudflare/_app/immutable/**/*.js 2>/dev/null | head -1)\"",
     "testCommand": null,
     "lintCommand": null,
     "devCommand": "npm run dev",
     "scripts": {
       "dev": "vite dev",
-      "build": "wrangler types --check && vite build",
+      "build": "wrangler types && vite build",
       "preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
       "deploy": "bun run build && wrangler deploy",
       "prepare": "svelte-kit sync || echo ''",
@@ -77,28 +77,31 @@
       "src",
       "static"
     ],
-    "gitBranches": null
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
   },
   "customNotes": [],
   "directoryMap": {
     "drizzle": {
       "path": "drizzle",
       "purpose": null,
-      "fileCount": 6,
-      "lastAccessed": 1778935138462,
+      "fileCount": 7,
+      "lastAccessed": 1780372364556,
       "keyFiles": [
         "0000_bent_speedball.sql",
         "0001_lumpy_lady_mastermind.sql",
         "0002_flat_rocket_racer.sql",
         "0003_polite_stardust.sql",
-        "seed_experiences.sql"
+        "0006_resume.sql"
       ]
     },
     "messages": {
       "path": "messages",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1778935138468,
+      "lastAccessed": 1780372364560,
       "keyFiles": [
         "en.json",
         "id.json"
@@ -108,14 +111,14 @@
       "path": "notes",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1778935138468,
+      "lastAccessed": 1780372364561,
       "keyFiles": []
     },
     "outputs": {
       "path": "outputs",
       "purpose": null,
       "fileCount": 3,
-      "lastAccessed": 1778935138509,
+      "lastAccessed": 1780372364561,
       "keyFiles": [
         "seo-wahyudi-chrisdianto.md",
         "seo-wahyudi-chrisdianto.provenance.md",
@@ -126,7 +129,7 @@
       "path": "project.inlang",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1778935138509,
+      "lastAccessed": 1780372364561,
       "keyFiles": [
         "README.md",
         "settings.json"
@@ -136,7 +139,7 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 4,
-      "lastAccessed": 1778935138510,
+      "lastAccessed": 1780372364562,
       "keyFiles": [
         "app.d.ts",
         "app.html",
@@ -148,7 +151,7 @@
       "path": "static",
       "purpose": "Static files",
       "fileCount": 2,
-      "lastAccessed": 1778935138510,
+      "lastAccessed": 1780372364562,
       "keyFiles": [
         "robots.txt",
         "sitemap.xml"
@@ -158,14 +161,14 @@
       "path": "test-results",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1778935138510,
+      "lastAccessed": 1780372364563,
       "keyFiles": []
     },
     "src/lib": {
       "path": "src/lib",
       "purpose": "Library code",
       "fileCount": 1,
-      "lastAccessed": 1778935138511,
+      "lastAccessed": 1780372364564,
       "keyFiles": [
         "index.ts"
       ]
@@ -173,8 +176,8 @@
     "src/routes": {
       "path": "src/routes",
       "purpose": "Route handlers",
-      "fileCount": 5,
-      "lastAccessed": 1778935138511,
+      "fileCount": 4,
+      "lastAccessed": 1780372364564,
       "keyFiles": [
         "+layout.svelte",
         "+page.server.ts",
@@ -184,75 +187,93 @@
   },
   "hotPaths": [
     {
-      "path": "src/lib/components/ProjectsMarquee.svelte",
+      "path": "src/lib/components/ResumeModal.svelte",
       "accessCount": 13,
-      "lastAccessed": 1778938466862,
-      "type": "file"
-    },
-    {
-      "path": "src/lib/styles/global.css",
-      "accessCount": 12,
-      "lastAccessed": 1778937662261,
-      "type": "file"
-    },
-    {
-      "path": "src/lib/components/Hero.svelte",
-      "accessCount": 11,
-      "lastAccessed": 1778938446148,
-      "type": "file"
-    },
-    {
-      "path": "src/lib/components/Footer.svelte",
-      "accessCount": 7,
-      "lastAccessed": 1778937599709,
+      "lastAccessed": 1780372925130,
       "type": "file"
     },
     {
       "path": "src/routes/+page.svelte",
-      "accessCount": 6,
-      "lastAccessed": 1778937275826,
-      "type": "file"
-    },
-    {
-      "path": "src/lib/configs/navs.ts",
-      "accessCount": 3,
-      "lastAccessed": 1778936936982,
-      "type": "file"
-    },
-    {
-      "path": "src/lib/utils/social.ts",
-      "accessCount": 3,
-      "lastAccessed": 1778936971672,
-      "type": "file"
-    },
-    {
-      "path": "src/lib/components/ProjectsPreview.svelte",
-      "accessCount": 1,
-      "lastAccessed": 1778935317015,
+      "accessCount": 9,
+      "lastAccessed": 1780375112792,
       "type": "file"
     },
     {
       "path": "src/routes/+page.server.ts",
-      "accessCount": 1,
-      "lastAccessed": 1778935323570,
+      "accessCount": 7,
+      "lastAccessed": 1780372889141,
       "type": "file"
     },
     {
-      "path": "src/lib/components/CTA.svelte",
-      "accessCount": 1,
-      "lastAccessed": 1778937275397,
+      "path": "src/lib/components/Intro.svelte",
+      "accessCount": 7,
+      "lastAccessed": 1780374663216,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/ResumeSheets.svelte",
+      "accessCount": 6,
+      "lastAccessed": 1780372918563,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/SectionNav.svelte",
+      "accessCount": 5,
+      "lastAccessed": 1780372890571,
       "type": "file"
     },
     {
       "path": "src/lib/components/Header.svelte",
-      "accessCount": 1,
-      "lastAccessed": 1778937275615,
+      "accessCount": 5,
+      "lastAccessed": 1780372890627,
       "type": "file"
     },
     {
-      "path": "src/lib/components/Profile.svelte",
+      "path": "src/routes/resume/+page.server.ts",
+      "accessCount": 5,
+      "lastAccessed": 1780372890688,
+      "type": "file"
+    },
+    {
+      "path": "src/routes/resume/+page.svelte",
+      "accessCount": 4,
+      "lastAccessed": 1780372890362,
+      "type": "file"
+    },
+    {
+      "path": "src/routes/+layout.svelte",
+      "accessCount": 4,
+      "lastAccessed": 1780375462233,
+      "type": "file"
+    },
+    {
+      "path": "src/app.html",
+      "accessCount": 2,
+      "lastAccessed": 1780375445718,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/components/Preloader.svelte",
+      "accessCount": 2,
+      "lastAccessed": 1780375570965,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
       "accessCount": 1,
-      "lastAccessed": 1778937275783,
+      "lastAccessed": 1780375113292,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/styles/global.css",
+      "accessCount": 1,
+      "lastAccessed": 1780375113347,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/stores/theme.svelte.ts",
+      "accessCount": 1,
+      "lastAccessed": 1780375123899,
       "type": "file"
     }
   ],

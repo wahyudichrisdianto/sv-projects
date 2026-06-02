@@ -1,39 +1,52 @@
 <script lang="ts">
     import SectionNav from "$lib/components/SectionNav.svelte";
-    import Hero from "$lib/components/Hero.svelte";
-    import Profile from "$lib/components/Profile.svelte";
+    import Intro from "$lib/components/Intro.svelte";
     import ExperienceTimeline from "$lib/components/ExperienceTimeline.svelte";
-    import ArchivePreview from "$lib/components/ArchivePreview.svelte";
     import Testimonials from "$lib/components/Testimonials.svelte";
     import CTA from "$lib/components/CTA.svelte";
-    import { sections } from "$lib/configs/navs";
-    import { blogPosts } from "$lib/data/content";
+    import ResumeModal from "$lib/components/ResumeModal.svelte";
+    import { sections, socialMedia } from "$lib/configs/navs";
 
     let { data } = $props();
+    let resumeOpen = $state(false);
+
+    // GitHub / LinkedIn / Email from the shared social config; Résumé opens the modal.
+    const introLinks = socialMedia.filter((l) =>
+        ["GitHub", "LinkedIn", "Email"].includes(l.label),
+    );
 </script>
 
 <SectionNav sections={sections.home} />
 
-<Hero
-    id="hero"
-    label=""
-    title="Creative Developer"
-    title2="* Tukang Pecut AI"
-    subtext="Vibing with AI to Building thoughtful digital experiences with clean code and intentional design."
-    projects={data.projects}
-/>
-
-<Profile
-    id="profile"
+<Intro
+    id="intro"
     name="Wahyudi Chrisdianto"
-    title="Full Stack Developer"
-    bio="Saya adalah Full-Stack Software Engineer dengan pendekatan product-first, berfokus pada membangun web, mobile, dan backend system yang cepat, scalable, dan mudah dipelihara. Saya terbiasa menerjemahkan kebutuhan bisnis yang kompleks menjadi solusi teknis yang solid, efisien, dan berdampak.
- /n Saya juga berpengalaman dalam mengoptimalkan workflow pengembangan, menjaga kualitas implementasi, serta membantu tim bekerja lebih efektif agar produk dapat dirilis dengan lebih baik."
-    projectCount={data.projectCount}
-/>
+    greeting="Hi there."
+    links={introLinks}
+    onResume={() => (resumeOpen = true)}
+>
+    {#snippet lead()}
+        <p>
+            I'm <strong>Wahyudi Chrisdianto</strong>, a full-stack engineer and
+            UI/UX designer with a <strong>product-first</strong> mindset. I work
+            across <strong>web</strong>, <strong>mobile</strong>, and
+            <strong>backend systems</strong>, turning complex requirements into
+            solutions that are fast, scalable, and built to last.
+        </p>
+    {/snippet}
+</Intro>
 
 <ExperienceTimeline id="experience" experiences={data.experiences} />
 
 <Testimonials id="testimonials" testimonials={data.testimonials} />
 
 <CTA id="contact" />
+
+<ResumeModal
+    bind:open={resumeOpen}
+    resume={data.resume}
+    experiences={data.resumeExperiences}
+    education={data.resumeEducation}
+    certifications={data.resumeCertifications}
+    printSrc="/resume?print=1"
+/>
